@@ -1,0 +1,4 @@
+weaviate-client
+requests
+sentence-transformers
+torch
