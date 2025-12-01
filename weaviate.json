@@ -1,27 +1,18 @@
 {
-  "build": {
-    "builder": "RAILPACK"
-  },
-  "deploy": {
-    "restartPolicyType": "ON_FAILURE"
-  },
+  "build": { "builder": "RAILPACK" },
+  "deploy": { "restartPolicyType": "ON_FAILURE" },
   "volumes": [
     {
       "name": "weaviate-data",
       "mountPath": "/var/lib/weaviate"
     }
   ],
-  "services": [
-    {
-      "name": "weaviate",
-      "env": {
-        "QUERY_DEFAULTS_LIMIT": "25",
-        "PERSISTENCE_DATA_PATH": "/var/lib/weaviate",
-        "AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED": "true",
-        "ENABLE_MODULES": "text2vec-transformers",
-        "TRANSFORMERS_INFERENCE_API": "http://localhost:8000",
-        "DEFAULT_VECTORIZER_MODULE": "text2vec-transformers"
-      }
-    }
-  ]
+  "env": {
+    "QUERY_DEFAULTS_LIMIT": "25",
+    "PERSISTENCE_DATA_PATH": "/var/lib/weaviate",
+    "AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED": "true",
+    "ENABLE_MODULES": "text2vec-openai",
+    "OPENAI_APIKEY": "${OPENAI_API_KEY}",
+    "DEFAULT_VECTORIZER_MODULE": "text2vec-openai"
+  }
 }
